@@ -1,178 +1,237 @@
+\section{Auswertung}
+\subsection{Messergebnisse}
 
-  \section{Auswertung}
-  \subsection{Messergebnisse}
-  \begin{table}[h]
-    \centering
-    \caption{Messdaten für Temperatur und Druck}
-    \label{tab:a}
-    \begin{tabular}{S S S S}
-      \toprule
-      \multicolumn{2}{c}{Druck < 1 bar} & \multicolumn{2}{c}{Druck > 1 bar} \\
-      {$T/\si{\celsius}$} & {$p/\si{\milli\bar}$} & {$T/\si{\celsius}$} & {$p/\si{\bar}$} \\
-      \midrule
-      45 & 147 & 103 & 1.13 \\
-      50 & 164 & 106 & 1.27 \\
-      55 & 186 & 109 & 1.43 \\
-      60 & 212 & 112 & 1.60 \\
-      65 & 250 & 115 & 1.79 \\
-      70 & 311 & 118 & 2.00 \\
-      75 & 383 & 121 & 2.22 \\
-      80 & 475 & 124 & 2.47 \\
-      85 & 582 & 127 & 2.74 \\
-      90 & 698 &  &  \\
-      95 & 852 &  &  \\
-      100 & 1011 &  &  \\
-      \bottomrule
-    \end{tabular}
-  \end{table}
-  Auf der linken Tabellenhälfte \ref{tab:a} sind die Messwerte für Druck
-  ($p < 1$\si{bar}) und Temperatur aufgezeichnet,
-  die mit Apparatur 1(siehe Abbildung \ref{fig: Apparatur1}) aufgenommen wurden. Auf der rechten Hälfte sind die
-  Messwerte, die mit Apparatur 2(siehe Abbildung \ref{fig: Apparatur2}) aufgenommen wurden,
-  allerdings wurde hier der Offset-Druck bereits mit eingerechnet. \\ \\
-  Offsetdruck für die zweite Messung ($p > 1\si{bar}$):
-  \begin{equation}
-    p_\text{offset} = 0.2 bar
-  \end{equation}
+\begin{table}[h]
+  \centering
+  \caption{Messdaten für Temperatur und Druck}
+  \label{tab:a}
+  \begin{tabular}{S S S S}
+    \toprule
+    \multicolumn{2}{c}{Druck < 1 bar} & \multicolumn{2}{c}{Druck > 1 bar} \\
+    {$T/\si{\celsius}$} & {$P/\si{\milli\bar}$} & {$T/\si{\celsius}$} &
+    {$p/\si{\bar}$} \\
+    \midrule
+    45 & 147 & 103 & 1.13 \\
+    50 & 164 & 106 & 1.27 \\
+    55 & 186 & 109 & 1.43 \\
+    60 & 212 & 112 & 1.60 \\
+    65 & 250 & 115 & 1.79 \\
+    70 & 311 & 118 & 2.00 \\
+    75 & 383 & 121 & 2.22 \\
+    80 & 475 & 124 & 2.47 \\
+    85 & 582 & 127 & 2.74 \\
+    90 & 698 &  &  \\
+    95 & 852 &  &  \\
+    100 & 1011 &  &  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
-  \subsection{Graphen und Rechnung}
-  \subsubsection{Messung mit Apparatur 1}
-  In dem Graphen \ref{fig:p1(T)} ($p < 1$\si{bar})
-  ist der Logarithmus des Dampfdruckes $p$ (in \si{\kPa})
-  gegen die reziproke absolute Temperatur (in \si{\kelvin}) dargestellt.
-  Mit der Funktion linregress aus scipy.stats
-  wurde eine Ausgleichsgerade erstellt, für die folgende Werte für den
-  Y-Achsen-Abschnitt $b$ und die Steigung $m$ zurückgegeben wurden (umgerechnet
-  von \si{\kPa} in \si{\Pa}):
-  \begin{equation}
-    p_1(T) = m \cdot T + b
-  \end{equation}
-  \begin{align}
-    b & = 29.998 &  m & = \num{-4344.8 +- 169.3}
-  \end{align}
-  \begin{figure}
-    \centering
-    \includegraphics[height = 8.30 cm]{plot.pdf}
-    \caption{Messwerte von Apparatur 1, Graph p1(T)}
-    \label{fig:p1(T)}
-  \end{figure}
+Auf der linken Tabellenhälfte \ref{tab:a} sind die Messwerte für Druck
+$p < 1$\si{bar} und Temperatur aufgezeichnet,
+die mit der Apparatur in Abbildung \ref{fig: Apparatur1} aufgenommen wurden. Auf der
+rechten Hälfte sind die Messwerte,
+die mit der Apparatur in Abbildung \ref{fig: Apparatur2} aufgenommen wurden,
+allerdings wurde hier der Offset-Druck bereits mit eingerechnet. \\ \\
+Der Offsetdruck für die zweite Messung beträgt für $p > 1\si{bar}$
+\begin{equation}
+  p_\text{offset} = \SI{0.2}{\bar}.
+\end{equation}
 
-  Die gemittelte Verdampfungswärme $L$ pro \si{mol} für den Druckbereich
-  $p < 1\si{bar}$ lautet nun
-  \begin{equation}
-    L = -m \cdot R \cdot \si{\kelvin} =
-    \SI{36122.6672 +- 1407.5602}{\joule\per\mol}
-  \end{equation}
-  mit der allgemeinen Gaskonstante\cite{gaskonstante}
-  $R = 8.314\si[per-mode=reciprocal]{\joule\per\kelvin\per\mol}$.
-  Die äußere Verdampfungswärme $L_a$ pro \si{mol} bei $T = 373\si{\kelvin}$ ist
-  \begin{equation}
-    L_a = T \cdot R = 3101.122 \si{\joule\per\mol}.
-  \end{equation}
-  Aus diesen Werten ergibt sich dann die innere Verdampfungswärme $L_i$, die
-  zur Überwindung der molekularen Anziehungskräfte bei der Verdampfung benötigt
-  wird:
-  \begin{equation}
-    L_i = L - L_a = \SI{2.0610428289(0878530014)e27}{\electronvolt\per\mol}
-  \end{equation}
-  Um die innere Verdampfungswärme pro Molekül zu bestimmten muss man noch durch
-  die Avogadro-konstante\cite{avogadro}
-  ($N_A = 6.022 \cdot 10^{23} \si[per-mode=reciprocal]{\per\mol}$) teilen:
-  \begin{equation}
-    L_{i,m} = \frac{L_i}{N_A} = \SI{3422.5221336 +- 145.8867509}{\electronvolt}
-  \end{equation}
-  \newpage
-   \subsubsection{Messung mit Apparatur 2}
-  \label{sec: MmA2}
-  In dem Graphen \ref{fig:p2(T)} ($p > 1$\si{\bar}) ist der Dampfdruck
-  $p$ (in \si{\kPa}) gegenüber der absoluten Temperatur $T$ (in \si{\kelvin})
-  aufgetragen. Das Ausgleichspolynom dritten Grades wurde mit Hilfe der
-  Funktion polyfit aus numpy erstellt.
-  Dabei wurden folgende Werte für die Funktionsgleichung zurückgegeben
-  (umgerechnet von \si{\kPa} in \si{\Pa}):
-  \begin{equation}
-    p_2(T) = aT³ + bT² + cT + d
-  \end{equation}
-  \begin{align}
-    a & = 0.84 & b & = -880.01 \\
-    c & = 309277.95 & d & = -36508852.61
-  \end{align}
-  \begin{figure}[h]
-    \centering
-    \includegraphics[height = 8.30 cm]{plot2.pdf}
-    \caption{Messwerte von Apparatur 2, Graph p2(T)}
-    \label{fig:p2(T)}
-  \end{figure}
-  \\
-  Um eine Abhängigkeit zwischen der Verdampfungswärme $L$ und der Temperatur
-  $T$ bei einem Druck $p > 1\si{\bar}$ herauszufinden löst man zunächst die
-  Clausius-Clapeyronsche Gleichung nach $L$ auf.
-  \begin{equation}
-    (V_D - V_F) dp = \frac{L}{T} dT
-    \iff L = (V_D - V_F) \frac{dp}{dT} T
-  \end{equation}
-  Nun ist der Differentialquotient $\frac{dp}{dT}$ die Ableitung der
-  Ausgleichsfunktion $p_2(T)$:
-  \begin{equation}
-    p_2'(T) = 2.25 T² - 1760.02 T + 309277.95
-  \end{equation}
-  Das Flüssigkeits-Volumen $V_F$ pro Mol wird über die molare Masse und die
-  Dichte von Wasser\cite{stoffwerte}
-  (bei $T = 373 K$, $p = 100000 \si{\Pa}$) berechnet:
-  \begin{align}
-    M_W & = \underbrace{2 \cdot 1}_{H_2} + \underbrace{16}_{O}
-    \si{\gram\per\mol} & \rho_W & = 950000 \si{\gram\per\cubic\meter}
-  \end{align}
-  \begin{equation}
-    V_F = \frac{M_W}{\rho_W} = 1.894736 \cdot 10^{-5} \si{\cubic\meter\per\mol}
-  \end{equation}
-  Das Dampf-Volumen $V_D$ pro Mol kann über die folgende Gleichung genähert
-  werden:
-  \begin{equation}
-    \Bigl(p + \frac{a}{V²}\Bigr)V = R T
-  \end{equation} mit $T = 373 \si{\kelvin}$, $p = 100000 \si{\Pa}$ und
-  $a = 0.9 \si[per-mode=reciprocal]{\joule\cubic\meter\per\mol\squared}$.
-  Durch umformen mit der \\
-  pq-Formel erhält man dann einen sinnvollen Wert
-  \begin{equation}
-    V_D = 0.03072569441 \si{\cubic\meter\per\mol}
-  \end{equation} für das Dampfvolumen.
-  Zuletzt setzt man die Werte in die umgeformte
-  Clausius-Clapeyronsche Gleichung ein und erhält für die Verdampfungswärme in
-  Abhängigkeit von der Temperatur folgende Funktion:
-  \begin{equation}
-    L(T) = 0.691 \cdot T³ + 54.044 \cdot T² + 9499.919 \cdot T
-  \end{equation}
-  \newpage
-  \subsection{Diskussion der Ergebnisse}
-  In Abbildung \ref{fig:p1(T)} kann man erkennen, dass die Messwerte sehr nah
-  an der durch die Funktion linregress bestimmten Geraden liegen. Der $r$-Wert
-  (r = 0.9924) bestätigt die Annahme, dass die Verdampfungswärme von Wasser im
-  Druckbereich $p < 1 \si{\bar}$ annähernd konstant ist. Auffällig ist, dass
-  die berechnete äußere Verdampfungswärme $L_a$, die zur Volumenausdehnung (und
-  damit zur Druckerhöhung im Gefäß) nötig ist, deutlich kleiner als die innere
-  Verdampfungswärme $L_i$, die zur Überwindung der molekularen Anziehungskräfte
-  benötigt wird, ist ($L_i > 10 \cdot L_a$).
-  Das liegt daran, dass $L_i$ die kinetische Energie $E_\text{kin}$ der Moleküle in
-  der Flüssigkeit so erhöhen muss, dass der Anteil mit maximaler kinetischer
-  Energie (Maxwellsche Geschwindigkeitsverteilung) wächst.
-  Die äußere Verdampfungswärme $L_a$ sorgt lediglich dafür, dass die Moleküle
-  im Wasserdampf, die deutlich weniger gebunden sind und mehr Platz haben,
-  zusammengedrückt werden ($V = const, p > p_0$).
+\subsection{Graphen und Rechnung}
+\subsubsection{Messung mit Apparatur 1}
+In dem Graphen \ref{fig:f1(T)} mit $p < 1$\si{bar}
+ist der Logarithmus des Dampfdruckes $p$ in \si{\kPa}
+gegen die reziproke absolute Temperatur in $1/\si{\kelvin}$ dargestellt.
+Mit der Funktion $linregress$ aus $scipy.stats$
+wurde eine Ausgleichsgerade erstellt, für die folgende Werte für den
+Y-Achsen-Abschnitt $b$ und die Steigung $m$ zurückgegeben wurden:
+\begin{equation}
+  f_1(T) = m \cdot T + b
+\end{equation}
+\begin{align}
+  b & = \SI{29.998}{\Pa} &  m & = \SI{-4344(169)}{\per\kelvin}
+\end{align}
 
-  In Abbildung \ref{fig:p2(T)} erkennt man, dass Druck und Temperatur ab
-  $p > 1\si{\bar}$ anders voneinander abhängen und die latente Wärme $L$
-  dadurch nicht mehr als konstant angesehen werden kann. Ein Polynom dritten
-  Grades kommt den Messwerten von Druck und temperatur sehr nahe.
-  Bei der berechneten Verdampfungswärme $L(T)$ muss man beachten, dass in der zur
-  Berechnung benutzten Formel Drücke und Volumina als konstant
-  angenommen wurden, was nur stark genähert zutrifft. Den Graphen von $L$ sieht
-  man in Abbildung \ref{fig:L}.
-  \begin{figure}[h]
-    \centering
-    \includegraphics[height = 8.30 cm]{plot3.pdf}
-    \caption{Verdampfungswärme bei $p > 1\si{\bar}$, Graph $L(T)$}
-    \label{fig:L}
-  \end{figure}
+\newpage
 
-  \newpage
+\begin{figure}
+  \centering
+  \includegraphics[height = 8.30 cm]{plot.pdf}
+  \caption{Messwerte von Apparatur 1, Graph f1(T)}
+  \label{fig:f1(T)}
+\end{figure}
+
+Die gemittelte Verdampfungswärme $L$ pro \si{mol} für den Druckbereich
+$p < 1\si{bar}$ lautet nun
+\begin{equation}
+  L = -m \cdot R = \SI{36123(1408)}{\joule\per\mol}
+\end{equation}
+mit der allgemeinen Gaskonstante\cite{gaskonstante}
+$R = 8.314 \si[per-mode=reciprocal]{\joule\per\kelvin\per\mol}$.
+Die äußere Verdampfungswärme $L_a$ pro \si{mol} bei $T = 373
+\si{\kelvin}$ ist
+
+\begin{equation}
+  L_a = T \cdot R = \SI{3101}{\joule\per\mol}.
+\end{equation}
+
+Aus diesen Werten ergibt sich dann die innere Verdampfungswärme $L_i$, die
+zur Überwindung der molekularen Anziehungskräfte bei der Verdampfung benötigt
+wird:
+
+\begin{equation}
+  L_i = L - L_a = \SI{33022(1408)}{\joule\per\mol} =
+  \SI{2.06(9)e23}{\electronvolt\per\mol}
+\end{equation}
+
+Um die innere Verdampfungswärme pro Molekül zu bestimmten muss man noch durch
+die Avogadro-konstante\cite{avogadro}
+$N_A = 6.022 \cdot 10^{23} \si[per-mode=reciprocal]{\per\mol}$ teilen:
+\begin{equation}
+  L_{i,m} = \frac{L_i}{N_A} = \SI{0.34(1)}{\electronvolt}
+\end{equation}
+
+\newpage
+
+ \subsubsection{Messung mit Apparatur 2}
+\label{sec: MmA2}
+In dem Graphen von Abbildung \ref{fig:f2(T)} mit $p > 1$\si{\bar} ist der
+Dampfdruck
+$p$ in \si{\kPa} gegenüber der absoluten Temperatur $T$ in $1/\si{\kelvin}$
+aufgetragen. Mit Hilfe der Funktion $polyfit$ aus $numpy$ wurde ein
+Ausgleichspolynom erstellt. Der Grund für die Wahl eines
+Polynoms mit dem Grad zwei anstatt wie in der Aufgabe gefordert mit dem Grad
+drei oder höher wird in der Diskussion erklärt.
+Folgende Werte wurden für die Funktionsgleichung zurückgegeben:
+\begin{equation}
+  f_2(T) = aT^2 + bT + c
+\end{equation}
+\begin{align}
+  a & = \SI{100.3}{\per\kelvin\tothe{2}} & b & =
+  \SI{-71186.3}{\per\kelvin} & c & = 12700.1 \\
+\end{align}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[height = 8.30 cm]{plot2.pdf}
+  \caption{Messwerte von Apparatur 2, Graph f2(T)}
+  \label{fig:f2(T)}
+\end{figure}
+
+\\
+Um eine Abhängigkeit zwischen der Verdampfungswärme $L$ und der Temperatur
+$T$ bei einem Druck $p > 1\si{\bar}$ herauszufinden löst man zunächst die
+Clausius-Clapeyronsche Gleichung nach $L$ auf.
+\begin{equation}
+  (V_D - V_F) dp = \frac{L}{T} dT
+  \iff L = (V_D - V_F) \frac{dp}{dT} T
+\end{equation}
+Nun ist der Differentialquotient $\frac{dp}{dT}$ die Ableitung der
+Ausgleichsfunktion $f_2(T)$:
+\begin{equation}
+  f_2'(T) = 200.6 T - 71186.3
+\end{equation}
+Das Flüssigkeits-Volumen $V_F$ pro Mol wird über die molare Masse und die
+Dichte von Wasser\cite{stoffwerte} bei $T = 373 K$ und
+$p = 100000 \si{\Pa}$ berechnet:
+\begin{align}
+  M_W & = \underbrace{2 \cdot 1}_{H_2} + \underbrace{16}_{O}
+  \si{\gram\per\mol} & \rho_W & = 950000 \si{\gram\per\cubic\meter}
+\end{align}
+\begin{equation}
+  V_F = \frac{M_W}{\rho_W} = 1.9 \cdot 10^{-5} \si{\cubic\meter\per\mol}
+\end{equation}
+Das Dampf-Volumen $V_D$ pro Mol kann über die folgende Gleichung genähert
+werden:
+\begin{equation}
+  \Bigl(p + \frac{a}{V²}\Bigr)V = R T
+\end{equation} mit $T = 373 \si{\kelvin}$, $p = 100000 \si{\Pa}$ und
+$a = 0.9 \si[per-mode=reciprocal]{\joule\cubic\meter\per\mol\squared}$.
+Durch umformen mit der \\
+pq-Formel erhält man dann einen sinnvollen Wert
+\begin{equation}
+  V_D = 0.030726 \si{\cubic\meter\per\mol}
+\end{equation} für das Dampfvolumen.
+Zuletzt setzt man die Werte in die umgeformte
+Clausius-Clapeyronsche Gleichung ein und erhält für die Verdampfungswärme in
+Abhängigkeit von der Temperatur folgende Funktion:
+\begin{equation}
+  L(T) = 6.160 \cdot T^2 - 2185.918 \cdot T
+\end{equation}
+
+\newpage
+
+\subsection{Diskussion der Ergebnisse}
+In Abbildung \ref{fig:f1(T)} kann man erkennen, dass die Messwerte sehr nah
+an der durch die Funktion linregress bestimmten Geraden liegen. Der $r$-Wert
+(r = 0.9924) bestätigt die Annahme, dass die Verdampfungswärme von Wasser im
+Druckbereich $p < 1 \si{\bar}$ annähernd konstant ist. Auffällig ist, dass
+die berechnete äußere Verdampfungswärme $L_a$, die zur Volumenausdehnung und
+damit zur Druckerhöhung im Gefäß nötig ist, nur $\frac{1}{10}$ mal so groß wie
+die innere Verdampfungswärme oder auch latente Wärme
+$L_i$, die zur Überwindung der molekularen Anziehungskräfte
+benötigt wird, ist.
+Das liegt daran, dass $L_i$ die kinetische Energie $E_\text{kin}$ der Moleküle in
+der Flüssigkeit so erhöhen muss, dass der Anteil mit maximaler kinetischer
+Energie wie in der Maxwellschen Geschwindigkeitsverteilung beschrieben wächst.
+Die äußere Verdampfungswärme $L_a$ sorgt lediglich dafür, dass die Moleküle
+im Wasserdampf, die deutlich weniger gebunden sind und mehr Platz haben,
+zusammengedrückt werden.
+\begin{align}
+  V & = \text{const} & p & > p_0 \\
+\end{align}
+In Abbildung \ref{fig:f2(T)} erkennt man, dass Druck und Temperatur ab
+$p > 1\si{\bar}$ anders voneinander abhängen und die latente Wärme $L$
+dadurch nicht mehr als konstant angesehen werden kann. Ein Ausgleichspolynom
+kann diese nicht konstante Abhängigkeit angenähert darstellen.
+Für das Polynom $f_2(T)$ wurde trotz der Vorgabe in der Aufgabenstellung
+der Grad zwei gewählt, da die zurückgegebenen Werte
+bei einem höheren Grad zum Teil sogar eine ganze Größenordnung von den
+Literaturwerten abweichen.
+Das lässt sich dadurch erklären, dass bei höheren Graden auch kleinere
+Messfehler einen viel größeren Einfluss auf das Polynom haben. Polyfit
+versucht sozusagen das Polynom genau auf die gegebenen Messwerte zu legen,
+wodurch die Funktion keinen Ausgleich mehr darstellt.
+Zudem kommt eine Ausgleichsfunktion zweiten Grades für $f_2(T)$
+den Messwerten für Druck und Temperatur bereits sehr nahe.
+
+Bei der berechneten Verdampfungswärme $L(T)$ muss man beachten, dass in der
+zur Berechnung benutzten Formel Drücke und Volumina als konstant
+angenommen wurden, was nur stark genähert zutrifft. Den Graphen von $L$ sieht
+man in Abbildung \ref{fig:L}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[height = 8.30 cm]{plot3.pdf}
+  \caption{Verdampfungswärme bei $p > 1\si{\bar}$, Graph $L(T)$}
+  \label{fig:L}
+\end{figure}
+
+Der Graph von L(T) hat bei $\SI{373}{\kelvin}$ etwa denselben Wert, wie die
+bei Messung 1 bestimmte kostante Verdampfungswärme $L$ im Bereich von
+$\SI{273}{\kelvin}$ bis $\SI{373}{\kelvin}$.
+Der Unterschied beträgt etwa
+\begin{equation}
+  L(373) - L = \SI{42169}{\joule\per\mol} - \SI{36122}{\joule\per\mol} =
+  \SI{6047}{\joule\per\mol}
+\end{equation}
+also beträgt die prozentuale Abweichung
+\begin{equation}
+  1 - \frac{L}{L(373)} = \SI{14.3}{\percent} .
+\end{equation}
+Bei dem Vergleich mit einem Literaturwert der
+Verdampfungswärme\cite{verdampfungswärme}
+bei
+$\SI{373}{\kelvin}$ von $L_w = \SI{1}{\joule\per\mol}$ beträgt die absolute
+Abweichung
+\begin{equation}
+  L(373) - L_w = \SI{42169}{\joule\per\mol} - \SI{40644}{\joule\per\mol} =
+  \SI{1525}{\joule\per\mol}
+\end{equation}
+und die prozentuale Abweichung
+\begin{equation}
+  1 - \frac{L_w}{L(373)} = \SI{3.6}{\percent} .
+\end{equation}
+
+\newpage
